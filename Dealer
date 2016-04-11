@@ -1,0 +1,42 @@
+/*
+Capers Lever
+JavaDeck
+CSCI 325 Java 1
+Date Created: 9/10/2013
+Last Modified: 4/11/2016
+Grade: 80
+Comments: This is a Java implementation of a deck of cards that will deal out
+          a specific amount of cards to an amount of players. Created in NetBeans
+          to run create an instance of Dealer, the first argument is the amount
+          of players, the second is the amount of cards per player. Then tell
+          dealer to deal. Dont forget to shuffle.
+ */
+package javacarddeck;
+
+public class Dealer {
+    int players;
+    int handSize;
+    Deck cards;
+    Dealer(int p, int hSize) {
+        players = p;
+        handSize = hSize;
+        cards = new Deck();
+    }
+    
+    public void deal() {
+        for(int i = players; i>0; i--) {
+            System.out.println("Player " + i + "'s Hand:");
+            for(int j = handSize; j > 0; j--) {
+                cards.getTopCard();
+            }
+            System.out.println("\n");
+        }
+    }
+    
+    public void shuffle() {
+        cards.shuffle();
+        cards.shuffle();
+        cards.shuffle();    //no one shuffles a deck once :)
+    }
+
+} //end dealer
