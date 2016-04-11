@@ -1,0 +1,61 @@
+/*
+Capers Lever
+JavaDeck
+CSCI 325 Java 1
+Date Created: 9/10/2013
+Last Modified: 4/11/2016
+Grade: 80
+Comments: This is a Java implementation of a deck of cards that will deal out
+          a specific amount of cards to an amount of players. Created in NetBeans
+          to run create an instance of Dealer, the first argument is the amount
+          of players, the second is the amount of cards per player. Then tell
+          dealer to deal. Dont forget to shuffle.
+ */
+package javacarddeck;
+import java.util.Scanner;
+public class Deck
+{
+    private Card[] c = new Card[52]; //array of 52 cards
+    int index;
+    public Deck(){
+        int count = 0;
+        int index = 0;
+        //popo=ulate the deck as a new unshuffled deck of cards
+        while(count != 52) {
+            for(int suit = 1; suit < 5; suit++) {
+                for(int value = 2; value < 15; value++) {
+                    c[count] = new Card(suit, value);
+                    count++;
+                }
+            }
+        }
+    };
+    
+    public void shuffle() {
+        Card[] temp = new Card[26];
+        Card[] temp2 = new Card[26];
+        int tempCount = 0;
+//the following is a pile shuffle into two piles then picked back up into original deck
+        for(int i= 0; i<52; i+=2) {  //copy of first half of deck, every other
+            temp[tempCount] = c[i];
+            tempCount++;
+        }
+        tempCount = 0;
+        for(int i=1; i<52; i+=2) { //copy of second half of deckf, every other
+            temp2[tempCount] = c[i];
+            tempCount++;
+        }
+        
+        for(int i = 0; i<26; i++) {
+            c[i] = temp[i];
+        }
+        for(int i = 26; i<52; i++) {
+            c[i] = temp2[i-26];
+        }
+    }
+    
+    public void getTopCard() {
+        c[index].print();
+        index++;
+    }
+}//end Deck 
